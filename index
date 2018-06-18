@@ -53,6 +53,7 @@
     var haarlem = L.marker([52.1561113, 5.3878266], {icon: firefoxIcon}).bindPopup('<a href="http://agnova.eu/portfolio/transformatie-postkantoor-zijlstraat-haarlem/">Amsterdam VBW').addTo(map);
     var cps = L.marker([52.173079, 5.4214773], {icon: firefoxIcon}).bindPopup('<a href="http://agnova.eu/portfolio/transformatie-postkantoor-zijlstraat-haarlem/">Amsterdam VBW').addTo(map);
     var abc = L.marker([53.173079, 5.4214773], {icon: firefoxIcon}).bindPopup('<a href="http://agnova.eu/portfolio/transformatie-postkantoor-zijlstraat-haarlem/">Amsterdam VBW').addTo(map);
+	var amersfoort = L.marker([52.379189, 5.899431], {icon: firefoxIcon}).bindPopup('<img src=watervillas.jpg width="150" height="150">').addTo(map);
 
     var cities = L.layerGroup([breecamp, haarlem]);
     var dingen = L.layerGroup([cps]);
