@@ -87,58 +87,58 @@
                                 });
 
 
-    var promise =  $.getJSON("D.geojson");
+    var promise =  $.getJSON("F.geojson");
     promise.then(function(data) {
 
 var agnovaprojecten = L.geoJson(data);
 
 var woningbouw = L.geoJson(data, {
     filter: function(feature, layer) {
-        return feature.properties.IcoonType == "W";
+        return feature.properties.Group == "W";
     },
     pointToLayer: function(feature, latlng) {
               return L.marker(latlng, {
               icon: yellowIcon
           }).on('mouseover', function() {//this is new
-            this.bindPopup(feature.properties.Naam + '<br><br><a href="' + feature.properties.Url + '" ">' + '<img src="' + feature.properties.Image + '" style="width:150px; height:auto;"><br><br>' + feature.properties.Opdrachtgever).openPopup();
+            this.bindPopup(feature.properties.Name + '<br><br><a href="' + feature.properties.URL + '" ">' + '<img src="' + feature.properties.Image + '" style="width:150px; height:auto;"><br><br>').openPopup();
 
         });
     }
 });
 var zorg = L.geoJson(data, {
     filter: function(feature, layer) {
-        return feature.properties.IcoonType == "Z";
+        return feature.properties.Group == "Z";
     },
     pointToLayer: function(feature, latlng) {
         return L.marker(latlng, {
             icon: pinkIcon
           }).on('mouseover', function() {
-            this.bindPopup(feature.properties.Naam + '<br><br><a href="' + feature.properties.Url + '" ">' + '<img src="' + feature.properties.Image + '" style="width:150px; height:auto;"><br><br>').openPopup();
+            this.bindPopup(feature.properties.Name + '<br><br><a href="' + feature.properties.URL + '" ">' + '<img src="' + feature.properties.Image + '" style="width:150px; height:auto;"><br><br>').openPopup();
   });
     }
 });
 var sport = L.geoJson(data, {
     filter: function(feature, layer) {
-        return feature.properties.IcoonType == "SP";
+        return feature.properties.Group == "SP";
     },
     pointToLayer: function(feature, latlng) {
         return L.marker(latlng, {
             icon: greenIcon
           }).on('mouseover', function() {
-            this.bindPopup(feature.properties.Naam + '<br><br><a href="' + feature.properties.Url + '" ">' + '<img src="' + feature.properties.Image + '" style="width:150px; height:auto;"><br><br>').openPopup();
+            this.bindPopup(feature.properties.Name + '<br><br><a href="' + feature.properties.URL + '" ">' + '<img src="' + feature.properties.Image + '" style="width:150px; height:auto;"><br><br>').openPopup();
   });
     }
 });
 
 var school = L.geoJson(data, {
     filter: function(feature, layer) {
-        return feature.properties.IcoonType == "S";
+        return feature.properties.Group == "S";
     },
     pointToLayer: function(feature, latlng) {
         return L.marker(latlng, {
             icon: blueIcon
           }).on('mouseover', function() {
-            this.bindPopup(feature.properties.Naam + '<br><br><a href="' + feature.properties.Url + '" ">' + '<img src="' + feature.properties.Image + '" style="width:150px; height:auto;"><br><br>' + feature.properties.Opdrachtgever).openPopup();
+            this.bindPopup(feature.properties.Name + '<br><br><a href="' + feature.properties.URL + '" ">' + '<img src="' + feature.properties.Image + '" style="width:150px; height:auto;"><br><br>').openPopup();
   });
     }
 });
@@ -148,6 +148,8 @@ woningbouw.addTo(woningbouwprojecten)
 zorg.addTo(zorgprojecten)
 sport.addTo(sportprojecten)
 school.addTo(schoolprojecten)
+
+
 
 
 var clusterStyles = [
@@ -171,24 +173,26 @@ var clusterStyles = [
   }
 ];
 
-var zorgClusters = L.markerClusterGroup({ disableClusteringAtZoom: 7, removeOutsideVisibleBounds: true, maxClusterRadius: 120, animateAddingMarkers: false, });
+var zorgClusters = L.markerClusterGroup({ disableClusteringAtZoom: 10, removeOutsideVisibleBounds: true, maxClusterRadius: 120, animateAddingMarkers: false, });
 zorgClusters.addLayer(zorg);
 map.addLayer(zorgClusters);
 
-var woningbouwClusters = L.markerClusterGroup({ disableClusteringAtZoom: 7, removeOutsideVisibleBounds: true, maxClusterRadius: 120, animateAddingMarkers: false, });
+var woningbouwClusters = L.markerClusterGroup({ disableClusteringAtZoom: 10, removeOutsideVisibleBounds: true, maxClusterRadius: 120, animateAddingMarkers: false, });
 woningbouwClusters.addLayer(woningbouw);
 map.addLayer(woningbouwClusters);
 
-var schoolClusters = L.markerClusterGroup({ disableClusteringAtZoom: 7, removeOutsideVisibleBounds: true, maxClusterRadius: 120, animateAddingMarkers: false, });
+var schoolClusters = L.markerClusterGroup({ disableClusteringAtZoom: 10, removeOutsideVisibleBounds: true, maxClusterRadius: 120, animateAddingMarkers: false, });
 woningbouwClusters.addLayer(school);
 map.addLayer(schoolClusters);
 
-var sportClusters = L.markerClusterGroup({ disableClusteringAtZoom: 7, removeOutsideVisibleBounds: true, maxClusterRadius: 120, animateAddingMarkers: false, });
+var sportClusters = L.markerClusterGroup({ disableClusteringAtZoom: 10, removeOutsideVisibleBounds: true, maxClusterRadius: 120, animateAddingMarkers: false, });
 woningbouwClusters.addLayer(sport);
 map.addLayer(sportClusters);
 
 
 });
+
+
 
 
     var projecten = L.layerGroup();
