@@ -2,8 +2,8 @@
 <html>
 <head>
     <title>agNOVA</title>
-	<link rel="icon" 
-    	  type="image/png" 
+	<link rel="icon"
+    	  type="image/png"
      	 href="favicon.png">
     <meta charset="utf-8" />
     <link
@@ -24,9 +24,70 @@
 .leaflet-popup-content-wrapper {
     background: #ffffff;
     color: #000000;
-    text-align:center;
-    font-weight: bold;
+    //text-align:Center;
+     img-align: center;
+
     font-family: "Verdana", Geneva, sans-serif;
+
+    h1 {
+      display: block;
+      font-size: 0,5em;
+      margin-top: 0.67em;
+      margin-bottom: 0.67em;
+      margin-left: 0;
+      margin-right: 0;
+      font-weight: Light;
+    }
+
+    h2 {
+      display: block;
+      font-size: 0,3em;
+      margin-top: 0.83em;
+      margin-bottom: 0.83em;
+      margin-left: 0;
+      margin-right: 0;
+      font-weight: light;
+    }
+
+    h3 {
+  display: block;
+  font-size: 1.17em;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  margin-left: 0;
+  margin-right: 0;
+  font-weight: light;
+}
+
+h4 {
+  display: block;
+  font-size: 1em;
+  margin-top: 1.33em;
+  margin-bottom: 1.33em;
+  margin-left: 0;
+  margin-right: 0;
+  font-weight: bold;
+}
+
+h5 {
+  display: block;
+  font-size: .83em;
+  margin-top: 1.67em;
+  margin-bottom: 1.67em;
+  margin-left: 0;
+  margin-right: 0;
+  font-weight: bold;
+}
+
+h6 {
+  display: block;
+  font-size: .67em;
+  margin-top: 2.33em;
+  margin-bottom: 2.33em;
+  margin-left: 0;
+  margin-right: 0;
+  font-weight: bold;
+}
 
 }
 
@@ -90,7 +151,7 @@
                                 });
 
 
-    var promise =  $.getJSON("F.geojson");
+    var promise =  $.getJSON("ABCD.geojson");
     promise.then(function(data) {
 
 var agnovaprojecten = L.geoJson(data);
@@ -103,7 +164,7 @@ var woningbouw = L.geoJson(data, {
               return L.marker(latlng, {
               icon: yellowIcon
           }).on('mouseover', function() {//this is new
-            this.bindPopup(feature.properties.Name + '<br><br><a href="' + feature.properties.URL + '" ">' + '<img src="' + feature.properties.Image + '" style="width:150px; height:auto;"><br><br>').openPopup();
+            this.bindPopup('<h3>'+ feature.properties.Name + "</h2>" + "<b> Client:  </b>" +feature.properties.Client + "<br>" + "<b> Jaar:  </b>" + feature.properties.Jaar + '<br><br><a href="' + feature.properties.URL + '" ">' + '<div align="center"><img src="' + feature.properties.Image + '" style="width:150px; height:auto;"><br><br></div>').openPopup();
 
         });
     }
@@ -146,11 +207,26 @@ var school = L.geoJson(data, {
     }
 });
 
+var reuse = L.geoJson(data, {
+    filter: function(feature, layer) {
+        return feature.properties.Herbestemm == "H";
+    },
+    pointToLayer: function(feature, latlng) {
+        return L.marker(latlng, {
+            icon: blueIcon
+          }).on('mouseover', function() {
+            this.bindPopup(feature.properties.Name + '<br><br><a href="' + feature.properties.URL + '" ">' + '<img src="' + feature.properties.Image + '" style="width:150px; height:auto;"><br><br>').openPopup();
+  });
+    }
+});
 
-woningbouw.addTo(woningbouwprojecten)
-zorg.addTo(zorgprojecten)
-sport.addTo(sportprojecten)
-school.addTo(schoolprojecten)
+
+
+//woningbouw.addTo(woningbouwprojecten)
+//zorg.addTo(zorgprojecten)
+//sport.addTo(sportprojecten)
+//school.addTo(schoolprojecten)
+reuse.addTo(reuseprojecten)
 
 
 
@@ -178,20 +254,29 @@ var clusterStyles = [
 
 var zorgClusters = L.markerClusterGroup({ disableClusteringAtZoom: 10, removeOutsideVisibleBounds: true, maxClusterRadius: 60, animateAddingMarkers: false, });
 zorgClusters.addLayer(zorg);
-map.addLayer(zorgClusters);
+//map.addLayer(zorgClusters);
 
 var woningbouwClusters = L.markerClusterGroup({ disableClusteringAtZoom: 10, removeOutsideVisibleBounds: true, maxClusterRadius: 60, animateAddingMarkers: false, });
 woningbouwClusters.addLayer(woningbouw);
-map.addLayer(woningbouwClusters);
+//map.addLayer(woningbouwClusters);
 
 var schoolClusters = L.markerClusterGroup({ disableClusteringAtZoom: 10, removeOutsideVisibleBounds: true, maxClusterRadius: 60, animateAddingMarkers: false, });
-woningbouwClusters.addLayer(school);
-map.addLayer(schoolClusters);
+schoolClusters.addLayer(school);
+//map.addLayer(schoolClusters);
 
 var sportClusters = L.markerClusterGroup({ disableClusteringAtZoom: 10, removeOutsideVisibleBounds: true, maxClusterRadius: 60, animateAddingMarkers: false, });
-woningbouwClusters.addLayer(sport);
-map.addLayer(sportClusters);
+sportClusters.addLayer(sport);
+//map.addLayer(sportClusters);
 
+
+
+
+
+
+woningbouwClusters.addTo(woningbouwprojecten)
+zorgClusters.addTo(zorgprojecten)
+schoolClusters.addTo(sportprojecten)
+sportClusters.addTo(sportprojecten)
 
 });
 
@@ -199,11 +284,19 @@ map.addLayer(sportClusters);
 
 
     var projecten = L.layerGroup();
+    projecten.addTo(map);
     var woningbouwprojecten = L.layerGroup();
+    woningbouwprojecten.addTo(map);
     var zorgprojecten  = L.layerGroup();
+    zorgprojecten.addTo(map);
     var sportprojecten  = L.layerGroup();
+    sportprojecten.addTo(map);
     var schoolprojecten  = L.layerGroup();
-    var andereprojecten  = L.layerGroup();
+    schoolprojecten.addTo(map);
+    var reuseprojecten  = L.layerGroup();
+
+
+
 
   var overlays = {
        "Projecten": projecten,
@@ -211,11 +304,31 @@ map.addLayer(sportClusters);
        "Zorg": zorgprojecten,
        "Scholen": schoolprojecten,
        "Sport": sportprojecten,
-       "Anders": andereprojecten
+       "Herbestemming": reuseprojecten
+
+              //var projecten = L.layerGroup();
+              //var woningbouwprojecten = L.layerGroup();
+              //var zorgprojecten  = L.layerGroup();
+              //var sportprojecten  = L.layerGroup();
+              //var schoolprojecten  = L.layerGroup();
+              //var andereprojecten  = L.layerGroup();
+
+
+
+            //var overlays = {
+               //  "Projecten": projecten,
+               //  "Woningbouw": woningbouwprojecten,
+               //  "Zorg": zorgprojecten,
+               //  "Scholen": schoolprojecten,
+               //  "Sport": sportprojecten,
+               //  "Anders": andereprojecten
+
+
     };
 
 
-		L.control.layers(baseLayers,overlays).addTo(map);
+		L.control.layers(baseLayers,overlays,{collapsed:false}).addTo(map);
+    
 
     </script>
 </body>
