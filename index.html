@@ -220,14 +220,26 @@ var reuse = L.geoJson(data, {
     }
 });
 
+var recentepr = L.geoJson(data, {
+    filter: function(feature, layer) {
+        return feature.properties.Jaar > "2014";
+    },
+    pointToLayer: function(feature, latlng) {
+        return L.marker(latlng, {
+            icon: blueIcon
+          }).on('mouseover', function() {
+            this.bindPopup('<h3>'+ feature.properties.Name + "</h2>" + "<b> Client:  </b>" +feature.properties.Client + "<br>" + "<b> Jaar:  </b>" + feature.properties.Jaar + '<br><br><a href="' + feature.properties.URL + '" ">' + '<div align="center"><img src="' + feature.properties.Image + '" style="width:150px; height:auto;"><br><br></div>').openPopup();
 
+  });
+    }
+});
 
 //woningbouw.addTo(woningbouwprojecten)
 //zorg.addTo(zorgprojecten)
 //sport.addTo(sportprojecten)
 //school.addTo(schoolprojecten)
 reuse.addTo(reuseprojecten)
-
+recentepr.addTo(recenteprojecten)
 
 
 
@@ -294,7 +306,7 @@ sportClusters.addTo(sportprojecten)
     var schoolprojecten  = L.layerGroup();
     schoolprojecten.addTo(map);
     var reuseprojecten  = L.layerGroup();
-
+    var recenteprojecten  = L.layerGroup();
 
 
 
@@ -304,7 +316,8 @@ sportClusters.addTo(sportprojecten)
        "Zorg": zorgprojecten,
        "Scholen": schoolprojecten,
        "Sport": sportprojecten,
-       "Herbestemming": reuseprojecten
+       "Herbestemming": reuseprojecten,
+       "Recente Projecten": recenteprojecten
 
               //var projecten = L.layerGroup();
               //var woningbouwprojecten = L.layerGroup();
@@ -328,7 +341,7 @@ sportClusters.addTo(sportprojecten)
 
 
 		L.control.layers(baseLayers,overlays,{collapsed:false}).addTo(map);
-    
+
 
     </script>
 </body>
