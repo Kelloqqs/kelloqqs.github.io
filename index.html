@@ -150,6 +150,19 @@ h6 {
                               popupAnchor: [0,-15]
                                 });
 
+        var blackIcon = L.icon({
+                                                iconUrl: 'AG6.svg',
+                                                      iconSize: [15, 36], // size of the icon
+                                                      popupAnchor: [0,-15]
+                                                        });
+
+                                                        var brownIcon = L.icon({
+                                                                              iconUrl: 'AG7.svg',
+                                                                                  iconSize: [15, 36], // size of the icon
+                                                                                  popupAnchor: [0,-15]
+                                                                                    });
+
+
 
     var promise =  $.getJSON("ABCD.geojson");
     promise.then(function(data) {
@@ -177,7 +190,8 @@ var zorg = L.geoJson(data, {
         return L.marker(latlng, {
             icon: pinkIcon
           }).on('mouseover', function() {
-            this.bindPopup(feature.properties.Name + '<br><br><a href="' + feature.properties.URL + '" ">' + '<img src="' + feature.properties.Image + '" style="width:150px; height:auto;"><br><br>').openPopup();
+            this.bindPopup('<h3>'+ feature.properties.Name + "</h2>" + "<b> Client:  </b>" +feature.properties.Client + "<br>" + "<b> Jaar:  </b>" + feature.properties.Jaar + '<br><br><a href="' + feature.properties.URL + '" ">' + '<div align="center"><img src="' + feature.properties.Image + '" style="width:150px; height:auto;"><br><br></div>').openPopup();
+
   });
     }
 });
@@ -189,7 +203,8 @@ var sport = L.geoJson(data, {
         return L.marker(latlng, {
             icon: greenIcon
           }).on('mouseover', function() {
-            this.bindPopup(feature.properties.Name + '<br><br><a href="' + feature.properties.URL + '" ">' + '<img src="' + feature.properties.Image + '" style="width:150px; height:auto;"><br><br>').openPopup();
+            this.bindPopup('<h3>'+ feature.properties.Name + "</h2>" + "<b> Client:  </b>" +feature.properties.Client + "<br>" + "<b> Jaar:  </b>" + feature.properties.Jaar + '<br><br><a href="' + feature.properties.URL + '" ">' + '<div align="center"><img src="' + feature.properties.Image + '" style="width:150px; height:auto;"><br><br></div>').openPopup();
+
   });
     }
 });
@@ -202,7 +217,8 @@ var school = L.geoJson(data, {
         return L.marker(latlng, {
             icon: blueIcon
           }).on('mouseover', function() {
-            this.bindPopup(feature.properties.Name + '<br><br><a href="' + feature.properties.URL + '" ">' + '<img src="' + feature.properties.Image + '" style="width:150px; height:auto;"><br><br>').openPopup();
+            this.bindPopup('<h3>'+ feature.properties.Name + "</h2>" + "<b> Client:  </b>" +feature.properties.Client + "<br>" + "<b> Jaar:  </b>" + feature.properties.Jaar + '<br><br><a href="' + feature.properties.URL + '" ">' + '<div align="center"><img src="' + feature.properties.Image + '" style="width:150px; height:auto;"><br><br></div>').openPopup();
+
   });
     }
 });
@@ -213,9 +229,10 @@ var reuse = L.geoJson(data, {
     },
     pointToLayer: function(feature, latlng) {
         return L.marker(latlng, {
-            icon: blueIcon
+            icon: brownIcon
           }).on('mouseover', function() {
-            this.bindPopup(feature.properties.Name + '<br><br><a href="' + feature.properties.URL + '" ">' + '<img src="' + feature.properties.Image + '" style="width:150px; height:auto;"><br><br>').openPopup();
+            this.bindPopup('<h3>'+ feature.properties.Name + "</h2>" + "<b> Client:  </b>" +feature.properties.Client + "<br>" + "<b> Jaar:  </b>" + feature.properties.Jaar + '<br><br><a href="' + feature.properties.URL + '" ">' + '<div align="center"><img src="' + feature.properties.Image + '" style="width:150px; height:auto;"><br><br></div>').openPopup();
+
   });
     }
 });
@@ -226,7 +243,7 @@ var recentepr = L.geoJson(data, {
     },
     pointToLayer: function(feature, latlng) {
         return L.marker(latlng, {
-            icon: blueIcon
+            icon: blackIcon
           }).on('mouseover', function() {
             this.bindPopup('<h3>'+ feature.properties.Name + "</h2>" + "<b> Client:  </b>" +feature.properties.Client + "<br>" + "<b> Jaar:  </b>" + feature.properties.Jaar + '<br><br><a href="' + feature.properties.URL + '" ">' + '<div align="center"><img src="' + feature.properties.Image + '" style="width:150px; height:auto;"><br><br></div>').openPopup();
 
