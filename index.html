@@ -229,7 +229,7 @@ var kantoor = L.geoJson(data, {
     },
     pointToLayer: function(feature, latlng) {
         return L.marker(latlng, {
-            icon: blueIcon
+            icon: redIcon
           }).on('mouseover', function() {
             this.bindPopup('<h3>'+ feature.properties.Name + "</h2>" + "<b> Jaar:  </b>" +feature.properties.Jaar + "<br>" + "<b> Plaats:  </b>" + feature.properties.City + "<br>" + "<b> Cliënt:  </b>" + feature.properties.Client +  "<br>" + "<b> Type:  </b>" + feature.properties.Group + '<br><br><a href="' + feature.properties.URL + '" ">' + '<div align="center"><img src="' + feature.properties.Image + '" style="width:150px; height:auto;"><br><br></div>').openPopup();
 
