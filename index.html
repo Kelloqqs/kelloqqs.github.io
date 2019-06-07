@@ -107,12 +107,11 @@ h6 {
             landUrl = 'http://tile.stamen.com/toner/{z}/{x}/{y}.png',
             thunAttrib = 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, under <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a>. Data by <a href="http://openstreetmap.org">OpenStreetMap</a>, under <a href="http://www.openstreetmap.org/copyright">ODbL</a>.';
 
-        var TonerBackground = L.tileLayer(osmUrl, {opacity: 0.6}, {attribution: osmAttrib}),
-        //layer.setOpacity(0,5);
-            Toner = L.tileLayer(landUrl, {opacity: 0.6}, {attribution: thunAttrib});
+        var TonerBackground = L.tileLayer(osmUrl,{opacity: 0.6, attribution: osmAttrib}),
+            Toner = L.tileLayer(landUrl,{opacity: 0.6, attribution: thunAttrib});
 
         var map = L.map('map', {
-			    layers: [TonerBackground] // only add one!
+			    layers: [TonerBackground]// only add one!
 		    })
 		    .setView([52.370216, 4.895168], 7);
 
@@ -172,39 +171,39 @@ var agnovaprojecten = L.geoJson(data);
 
 var woningbouw = L.geoJson(data, {
     filter: function(feature, layer) {
-        return feature.properties.Group == "W";
+        return feature.properties.Group == "Wonen";
     },
     pointToLayer: function(feature, latlng) {
               return L.marker(latlng, {
               icon: yellowIcon
           }).on('mouseover', function() {//this is new
-            this.bindPopup('<h3>'+ feature.properties.Name + "</h2>" + "<b> Client:  </b>" +feature.properties.Client + "<br>" + "<b> Jaar:  </b>" + feature.properties.Jaar + '<br><br><a href="' + feature.properties.URL + '" ">' + '<div align="center"><img src="' + feature.properties.Image + '" style="width:150px; height:auto;"><br><br></div>').openPopup();
+            this.bindPopup('<h3>'+ feature.properties.Name + "</h2>" + "<b> Jaar:  </b>" +feature.properties.Jaar + "<br>" + "<b> Plaats:  </b>" + feature.properties.City + "<br>" + "<b> Cliënt:  </b>" + feature.properties.Client +  "<br>" + "<b> Type:  </b>" + feature.properties.Group + '<br><br><a href="' + feature.properties.URL + '" ">' + '<div align="center"><img src="' + feature.properties.Image + '" style="width:150px; height:auto;"><br><br></div>').openPopup();
 
         });
     }
 });
 var zorg = L.geoJson(data, {
     filter: function(feature, layer) {
-        return feature.properties.Group == "Z";
+        return feature.properties.Group == "Zorg";
     },
     pointToLayer: function(feature, latlng) {
         return L.marker(latlng, {
             icon: pinkIcon
           }).on('mouseover', function() {
-            this.bindPopup('<h3>'+ feature.properties.Name + "</h2>" + "<b> Client:  </b>" +feature.properties.Client + "<br>" + "<b> Jaar:  </b>" + feature.properties.Jaar + '<br><br><a href="' + feature.properties.URL + '" ">' + '<div align="center"><img src="' + feature.properties.Image + '" style="width:150px; height:auto;"><br><br></div>').openPopup();
+            this.bindPopup('<h3>'+ feature.properties.Name + "</h2>" + "<b> Jaar:  </b>" +feature.properties.Jaar + "<br>" + "<b> Plaats:  </b>" + feature.properties.City + "<br>" + "<b> Cliënt:  </b>" + feature.properties.Client +  "<br>" + "<b> Type:  </b>" + feature.properties.Group + '<br><br><a href="' + feature.properties.URL + '" ">' + '<div align="center"><img src="' + feature.properties.Image + '" style="width:150px; height:auto;"><br><br></div>').openPopup();
 
   });
     }
 });
 var sport = L.geoJson(data, {
     filter: function(feature, layer) {
-        return feature.properties.Group == "SP";
+        return feature.properties.Group == "Sport";
     },
     pointToLayer: function(feature, latlng) {
         return L.marker(latlng, {
             icon: greenIcon
           }).on('mouseover', function() {
-            this.bindPopup('<h3>'+ feature.properties.Name + "</h2>" + "<b> Client:  </b>" +feature.properties.Client + "<br>" + "<b> Jaar:  </b>" + feature.properties.Jaar + '<br><br><a href="' + feature.properties.URL + '" ">' + '<div align="center"><img src="' + feature.properties.Image + '" style="width:150px; height:auto;"><br><br></div>').openPopup();
+            this.bindPopup('<h3>'+ feature.properties.Name + "</h2>" + "<b> Jaar:  </b>" +feature.properties.Jaar + "<br>" + "<b> Plaats:  </b>" + feature.properties.City + "<br>" + "<b> Cliënt:  </b>" + feature.properties.Client +  "<br>" + "<b> Type:  </b>" + feature.properties.Group + '<br><br><a href="' + feature.properties.URL + '" ">' + '<div align="center"><img src="' + feature.properties.Image + '" style="width:150px; height:auto;"><br><br></div>').openPopup();
 
   });
     }
@@ -212,13 +211,27 @@ var sport = L.geoJson(data, {
 
 var school = L.geoJson(data, {
     filter: function(feature, layer) {
-        return feature.properties.Group == "S";
+        return feature.properties.Group == "Onderwijs";
     },
     pointToLayer: function(feature, latlng) {
         return L.marker(latlng, {
             icon: blueIcon
           }).on('mouseover', function() {
-            this.bindPopup('<h3>'+ feature.properties.Name + "</h2>" + "<b> Client:  </b>" +feature.properties.Client + "<br>" + "<b> Jaar:  </b>" + feature.properties.Jaar + '<br><br><a href="' + feature.properties.URL + '" ">' + '<div align="center"><img src="' + feature.properties.Image + '" style="width:150px; height:auto;"><br><br></div>').openPopup();
+            this.bindPopup('<h3>'+ feature.properties.Name + "</h2>" + "<b> Jaar:  </b>" +feature.properties.Jaar + "<br>" + "<b> Plaats:  </b>" + feature.properties.City + "<br>" + "<b> Cliënt:  </b>" + feature.properties.Client +  "<br>" + "<b> Type:  </b>" + feature.properties.Group + '<br><br><a href="' + feature.properties.URL + '" ">' + '<div align="center"><img src="' + feature.properties.Image + '" style="width:150px; height:auto;"><br><br></div>').openPopup();
+
+  });
+    }
+});
+
+var kantoor = L.geoJson(data, {
+    filter: function(feature, layer) {
+        return feature.properties.Group == "Kantoor";
+    },
+    pointToLayer: function(feature, latlng) {
+        return L.marker(latlng, {
+            icon: blueIcon
+          }).on('mouseover', function() {
+            this.bindPopup('<h3>'+ feature.properties.Name + "</h2>" + "<b> Jaar:  </b>" +feature.properties.Jaar + "<br>" + "<b> Plaats:  </b>" + feature.properties.City + "<br>" + "<b> Cliënt:  </b>" + feature.properties.Client +  "<br>" + "<b> Type:  </b>" + feature.properties.Group + '<br><br><a href="' + feature.properties.URL + '" ">' + '<div align="center"><img src="' + feature.properties.Image + '" style="width:150px; height:auto;"><br><br></div>').openPopup();
 
   });
     }
@@ -232,7 +245,7 @@ var reuse = L.geoJson(data, {
         return L.marker(latlng, {
             icon: brownIcon
           }).on('mouseover', function() {
-            this.bindPopup('<h3>'+ feature.properties.Name + "</h2>" + "<b> Client:  </b>" +feature.properties.Client + "<br>" + "<b> Jaar:  </b>" + feature.properties.Jaar + '<br><br><a href="' + feature.properties.URL + '" ">' + '<div align="center"><img src="' + feature.properties.Image + '" style="width:150px; height:auto;"><br><br></div>').openPopup();
+            this.bindPopup('<h3>'+ feature.properties.Name + "</h2>" + "<b> Jaar:  </b>" +feature.properties.Jaar + "<br>" + "<b> Plaats:  </b>" + feature.properties.City + "<br>" + "<b> Cliënt:  </b>" + feature.properties.Client +  "<br>" + "<b> Type:  </b>" + feature.properties.Group + '<br><br><a href="' + feature.properties.URL + '" ">' + '<div align="center"><img src="' + feature.properties.Image + '" style="width:150px; height:auto;"><br><br></div>').openPopup();
 
   });
     }
@@ -246,7 +259,7 @@ var recentepr = L.geoJson(data, {
         return L.marker(latlng, {
             icon: blackIcon
           }).on('mouseover', function() {
-            this.bindPopup('<h3>'+ feature.properties.Name + "</h2>" + "<b> Client:  </b>" +feature.properties.Client + "<br>" + "<b> Jaar:  </b>" + feature.properties.Jaar + '<br><br><a href="' + feature.properties.URL + '" ">' + '<div align="center"><img src="' + feature.properties.Image + '" style="width:150px; height:auto;"><br><br></div>').openPopup();
+            this.bindPopup('<h3>'+ feature.properties.Name + "</h2>" + "<b> Jaar:  </b>" +feature.properties.Jaar + "<br>" + "<b> Plaats:  </b>" + feature.properties.City + "<br>" + "<b> Cliënt:  </b>" + feature.properties.Client +  "<br>" + "<b> Type:  </b>" + feature.properties.Group + '<br><br><a href="' + feature.properties.URL + '" ">' + '<div align="center"><img src="' + feature.properties.Image + '" style="width:150px; height:auto;"><br><br></div>').openPopup();
 
   });
     }
@@ -282,22 +295,25 @@ var clusterStyles = [
   }
 ];
 
-var zorgClusters = L.markerClusterGroup({ disableClusteringAtZoom: 10, removeOutsideVisibleBounds: true, maxClusterRadius: 60, animateAddingMarkers: false, });
+var zorgClusters = L.markerClusterGroup({ disableClusteringAtZoom: 9, removeOutsideVisibleBounds: true, maxClusterRadius: 60, animateAddingMarkers: false, });
 zorgClusters.addLayer(zorg);
 //map.addLayer(zorgClusters);
 
-var woningbouwClusters = L.markerClusterGroup({ disableClusteringAtZoom: 10, removeOutsideVisibleBounds: true, maxClusterRadius: 60, animateAddingMarkers: false, });
+var woningbouwClusters = L.markerClusterGroup({ disableClusteringAtZoom: 9, removeOutsideVisibleBounds: true, maxClusterRadius: 60, animateAddingMarkers: false, });
 woningbouwClusters.addLayer(woningbouw);
 //map.addLayer(woningbouwClusters);
 
-var schoolClusters = L.markerClusterGroup({ disableClusteringAtZoom: 10, removeOutsideVisibleBounds: true, maxClusterRadius: 60, animateAddingMarkers: false, });
+var schoolClusters = L.markerClusterGroup({ disableClusteringAtZoom: 9, removeOutsideVisibleBounds: true, maxClusterRadius: 60, animateAddingMarkers: false, });
 schoolClusters.addLayer(school);
 //map.addLayer(schoolClusters);
 
-var sportClusters = L.markerClusterGroup({ disableClusteringAtZoom: 10, removeOutsideVisibleBounds: true, maxClusterRadius: 60, animateAddingMarkers: false, });
+var sportClusters = L.markerClusterGroup({ disableClusteringAtZoom: 9, removeOutsideVisibleBounds: true, maxClusterRadius: 60, animateAddingMarkers: false, });
 sportClusters.addLayer(sport);
 //map.addLayer(sportClusters);
 
+var kantoorClusters = L.markerClusterGroup({ disableClusteringAtZoom: 9, removeOutsideVisibleBounds: true, maxClusterRadius: 60, animateAddingMarkers: false, });
+kantoorClusters.addLayer(kantoor);
+//map.addLayer(sportClusters);
 
 
 
@@ -307,6 +323,7 @@ woningbouwClusters.addTo(woningbouwprojecten)
 zorgClusters.addTo(zorgprojecten)
 schoolClusters.addTo(sportprojecten)
 sportClusters.addTo(sportprojecten)
+kantoorClusters.addTo(kantoorprojecten)
 
 });
 
@@ -323,6 +340,8 @@ sportClusters.addTo(sportprojecten)
     sportprojecten.addTo(map);
     var schoolprojecten  = L.layerGroup();
     schoolprojecten.addTo(map);
+    var kantoorprojecten  = L.layerGroup();
+    kantoorprojecten.addTo(map);
     var reuseprojecten  = L.layerGroup();
     var recenteprojecten  = L.layerGroup();
 
@@ -334,6 +353,7 @@ sportClusters.addTo(sportprojecten)
        "Zorg": zorgprojecten,
        "Scholen": schoolprojecten,
        "Sport": sportprojecten,
+       "Kantoren": kantoorprojecten,
        "Herbestemming": reuseprojecten,
        "Recente Projecten": recenteprojecten
 
