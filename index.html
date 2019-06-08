@@ -113,7 +113,9 @@ h6 {
         var map = L.map('map', {
 			    layers: [TonerBackground]// only add one!
 		    })
-		    .setView([52.370216, 4.895168], 7);
+		    .setView([52.370216, 4.895168], 7)
+			scrollWheelZoom: false
+	;
 
 		var baseLayers = {
 			"Kaart zonder namen": TonerBackground,
