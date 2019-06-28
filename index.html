@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>agNOVA</title>
+    <title>agNOVA architecten</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 	<link rel="icon"
     	  type="image/png"
@@ -213,7 +213,7 @@ var zorg = L.geoJson(data, {
     pointToLayer: function(feature, latlng) {
         return L.marker(latlng, {
             icon: pinkIcon
-          }).on('click', function() {
+          }).on('mouseover click', function() {
             this.bindPopup('<h3>'+ feature.properties.Name + "</h2>" + "<b> Jaar:  </b>" +feature.properties.Jaar + "<br>" + "<b> Plaats:  </b>" + feature.properties.City + "<br>" + "<b> Opdrachtgever:  </b>" + feature.properties.Client +  "<br>" + "<b> Type:  </b>" + feature.properties.Group + '<br><br><a href="' + feature.properties.URL + '" ">' + '<div align="center"><img src="' + feature.properties.Image + '" style="width:150px; height:auto;"><br><br></div>').openPopup();
 
   });
@@ -226,7 +226,7 @@ var sport = L.geoJson(data, {
     pointToLayer: function(feature, latlng) {
         return L.marker(latlng, {
             icon: greenIcon
-          }).on('click', function() {
+          }).on('mouseover click', function() {
             this.bindPopup('<h3>'+ feature.properties.Name + "</h2>" + "<b> Jaar:  </b>" +feature.properties.Jaar + "<br>" + "<b> Plaats:  </b>" + feature.properties.City + "<br>" + "<b> Opdrachtgever:  </b>" + feature.properties.Client +  "<br>" + "<b> Type:  </b>" + feature.properties.Group + '<br><br><a href="' + feature.properties.URL + '" ">' + '<div align="center"><img src="' + feature.properties.Image + '" style="width:150px; height:auto;"><br><br></div>').openPopup();
 
   });
@@ -240,7 +240,7 @@ var school = L.geoJson(data, {
     pointToLayer: function(feature, latlng) {
         return L.marker(latlng, {
             icon: blueIcon
-          }).on('click', function() {
+          }).on('mouseover click', function() {
             this.bindPopup('<h3>'+ feature.properties.Name + "</h2>" + "<b> Jaar:  </b>" +feature.properties.Jaar + "<br>" + "<b> Plaats:  </b>" + feature.properties.City + "<br>" + "<b> Opdrachtgever:  </b>" + feature.properties.Client +  "<br>" + "<b> Type:  </b>" + feature.properties.Group + '<br><br><a href="' + feature.properties.URL + '" ">' + '<div align="center"><img src="' + feature.properties.Image + '" style="width:150px; height:auto;"><br><br></div>').openPopup();
 
   });
@@ -254,7 +254,7 @@ var kantoor = L.geoJson(data, {
     pointToLayer: function(feature, latlng) {
         return L.marker(latlng, {
             icon: redIcon
-          }).on('click', function() {
+          }).on('mouseover click', function() {
             this.bindPopup('<h3>'+ feature.properties.Name + "</h2>" + "<b> Jaar:  </b>" +feature.properties.Jaar + "<br>" + "<b> Plaats:  </b>" + feature.properties.City + "<br>" + "<b> Opdrachtgever:  </b>" + feature.properties.Client +  "<br>" + "<b> Type:  </b>" + feature.properties.Group + '<br><br><a href="' + feature.properties.URL + '" ">' + '<div align="center"><img src="' + feature.properties.Image + '" style="width:150px; height:auto;"><br><br></div>').openPopup();
 
   });
@@ -268,7 +268,7 @@ var interieur = L.geoJson(data, {
     pointToLayer: function(feature, latlng) {
         return L.marker(latlng, {
             icon: purpleIcon
-          }).on('click', function() {
+          }).on('mouseover click', function() {
             this.bindPopup('<h3>'+ feature.properties.Name + "</h2>" + "<b> Jaar:  </b>" +feature.properties.Jaar + "<br>" + "<b> Plaats:  </b>" + feature.properties.City + "<br>" + "<b> Opdrachtgever:  </b>" + feature.properties.Client +  "<br>" + "<b> Type:  </b>" + feature.properties.Group + '<br><br><a href="' + feature.properties.URL + '" ">' + '<div align="center"><img src="' + feature.properties.Image + '" style="width:150px; height:auto;"><br><br></div>').openPopup();
 
   });
@@ -282,7 +282,7 @@ var reuse = L.geoJson(data, {
     pointToLayer: function(feature, latlng) {
         return L.marker(latlng, {
             icon: brownIcon
-          }).on('click', function() {
+          }).on('mouseover click', function() {
             this.bindPopup('<h3>'+ feature.properties.Name + "</h2>" + "<b> Jaar:  </b>" +feature.properties.Jaar + "<br>" + "<b> Plaats:  </b>" + feature.properties.City + "<br>" + "<b> Opdrachtgever:  </b>" + feature.properties.Client +  "<br>" + "<b> Type:  </b>" + feature.properties.Group + '<br><br><a href="' + feature.properties.URL + '" ">' + '<div align="center"><img src="' + feature.properties.Image + '" style="width:150px; height:auto;"><br><br></div>').openPopup();
 
   });
@@ -296,7 +296,7 @@ var recentepr = L.geoJson(data, {
     pointToLayer: function(feature, latlng) {
         return L.marker(latlng, {
             icon: blackIcon
-          }).on('click', function() {
+          }).on('mouseover click', function() {
             this.bindPopup('<h3>'+ feature.properties.Name + "</h2>" + "<b> Jaar:  </b>" +feature.properties.Jaar + "<br>" + "<b> Plaats:  </b>" + feature.properties.City + "<br>" + "<b> Opdrachtgever:  </b>" + feature.properties.Client +  "<br>" + "<b> Type:  </b>" + feature.properties.Group + '<br><br><a href="' + feature.properties.URL + '" ">' + '<div align="center"><img src="' + feature.properties.Image + '" style="width:150px; height:auto;"><br><br></div>').openPopup();
 
   });
