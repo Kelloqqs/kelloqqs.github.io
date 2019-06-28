@@ -381,11 +381,11 @@ interieurClusters.addTo(interieurprojecten)
     interieurprojecten.addTo(map);
     var reuseprojecten  = L.layerGroup();
     var recenteprojecten  = L.layerGroup();
-
+	var projecten = L.layerGroup();
 
 
   var overlays = {
-  
+  	"Projecten": projecten,
        "Woningbouw": woningbouwprojecten,
        "Zorg": zorgprojecten,
        "Scholen": schoolprojecten,
