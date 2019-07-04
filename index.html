@@ -291,7 +291,7 @@ var reuse = L.geoJson(data, {
 
 var recentepr = L.geoJson(data, {
     filter: function(feature, layer) {
-        return feature.properties.Jaar > "2014";
+        return feature.properties.Jaar > "2015";
     },
     pointToLayer: function(feature, latlng) {
         return L.marker(latlng, {
