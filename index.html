@@ -166,7 +166,7 @@ html, body, #map {
                               popupAnchor: [0,-15]
                                 });
 
-                                var purpleIcon = L.icon({
+       var purpleIcon = L.icon({
                                                   iconUrl: 'AG9.svg',
                                                       iconSize: [15, 36], // size of the icon
                                                       popupAnchor: [0,-15]
@@ -178,20 +178,26 @@ html, body, #map {
                                                       popupAnchor: [0,-15]
                                                         });
 
-                                                        var brownIcon = L.icon({
-                                                                              iconUrl: 'AG7.svg',
-                                                                                  iconSize: [15, 36], // size of the icon
-                                                                                  popupAnchor: [0,-15]
-                                                                                    });
+        var brownIcon = L.icon({
+                         iconUrl: 'AG7.svg',
+                         iconSize: [15, 36], // size of the icon
+                         popupAnchor: [0,-15]
+                          });
+	    
+        var lightblueIcon = L.icon({
+                         iconUrl: 'AG10.svg',
+                         iconSize: [15, 36], // size of the icon
+                         popupAnchor: [0,-15]
+                          });
+	    
+	    
 
 
-
-    var promise =  $.getJSON("agNOVA projecten.geojson");
-    promise.then(function(data) {
+    var geojsondata =  $.getJSON("agNOVA projecten.geojson");
+    geojsondata.then(function(data) {
 
 var agnovaprojecten = L.geoJson(data);
-
-    
+   
 	    
 var woningbouw = L.geoJson(data, {
     filter: function(feature, layer) {
@@ -274,7 +280,22 @@ var interieur = L.geoJson(data, {
   });
     }
 });
+	    
+var anders = L.geoJson(data, {
+    filter: function(feature, layer) {
+        return feature.properties.Group == "Anders";
+    },
+    pointToLayer: function(feature, latlng) {
+        return L.marker(latlng, {
+            icon: redIcon
+          }).on('mouseover click', function() {
+            this.bindPopup('<h3>'+ feature.properties.Name + "</h2>" + "<b> Jaar:  </b>" +feature.properties.Jaar + "<br>" + "<b> Plaats:  </b>" + feature.properties.City + "<br>" + "<b> Opdrachtgever:  </b>" + feature.properties.Client +  "<br>" + "<b> Type:  </b>" + feature.properties.Group + '<br><br><a href="' + feature.properties.URL + '" ">' + '<div align="center"><img src="' + feature.properties.Image + '" style="width:150px; height:auto;"><br><br></div>', {maxWidth : 175}).openPopup();
 
+  });
+    }
+}); 
+	    
+	    
 var reuse = L.geoJson(data, {
     filter: function(feature, layer) {
         return feature.properties.Herbestemm == "Herbestemming";
@@ -357,14 +378,17 @@ var interieurClusters = L.markerClusterGroup({ disableClusteringAtZoom: 8, remov
 interieurClusters.addLayer(interieur);
 //map.addLayer(sportClusters);
 
+var andersClusters = L.markerClusterGroup({ disableClusteringAtZoom: 8, removeOutsideVisibleBounds: true, maxClusterRadius: 60, animateAddingMarkers: false, });
+andersClusters.addLayer(anders);
 
 
+interieurClusters.addTo(interieurprojecten)
 woningbouwClusters.addTo(woningbouwprojecten)
 zorgClusters.addTo(zorgprojecten)
 schoolClusters.addTo(schoolprojecten)
 sportClusters.addTo(sportprojecten)
 kantoorClusters.addTo(kantoorprojecten)
-interieurClusters.addTo(interieurprojecten)
+andersClusters.addTo(andereprojecten)	    
 });
 
 
@@ -383,6 +407,8 @@ interieurClusters.addTo(interieurprojecten)
     kantoorprojecten.addTo(map);
     var interieurprojecten  = L.layerGroup();
     interieurprojecten.addTo(map);
+    var andereprojecten  = L.layerGroup();
+    andereprojecten.addTo(map);
     var reuseprojecten  = L.layerGroup();
     var recenteprojecten  = L.layerGroup();
 	
@@ -396,7 +422,7 @@ interieurClusters.addTo(interieurprojecten)
        "Onderwijs": schoolprojecten,
        "Sport": sportprojecten,
        "Kantoren": kantoorprojecten,
-       
+       "Anders": andereprojecten,
        "Herbestemming": reuseprojecten,
        "Recente Projecten": recenteprojecten
 
