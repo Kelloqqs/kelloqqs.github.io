@@ -283,7 +283,7 @@ var interieur = L.geoJson(data, {
 	    
 var anders = L.geoJson(data, {
     filter: function(feature, layer) {
-        return feature.properties.Group == "Anders";
+        return feature.properties.Group3 == "Anders";
     },
     pointToLayer: function(feature, latlng) {
         return L.marker(latlng, {
