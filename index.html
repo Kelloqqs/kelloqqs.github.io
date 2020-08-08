@@ -41,17 +41,15 @@ windyInit(options, windyAPI => {
 
 
 $.getJSON("Locaties.geojson",function(data){
-  var kIcon = L.icon({
+    var ratIcon = L.icon({
     iconUrl: '/AG1.svg',
-    iconSize: [15, 36]
-  });
-  L.geoJson(data,{
+    iconSize: [50,40]
+  }); 
+  L.geoJson(data  ,{
     pointToLayer: function(feature,latlng){
-      var marker = L.marker(latlng,{icon: kIcon});
-      marker.bindPopup(feature.properties.Name + '<br/>';
-      return marker;
+    return L.marker(latlng,{icon: ratIcon});
     }
-  }).addTo(map);
+  }  ).addTo(map);
 });
 
 
