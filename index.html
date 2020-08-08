@@ -40,11 +40,19 @@ windyInit(options, windyAPI => {
   map.removeLayer(W.labelsLayer);
 
 
-    $.getJSON("Locaties.geojson",function(data){
-    // add GeoJSON layer to the map once the file is loaded
-    L.geoJson(data).addTo(map).bindPopup("<strong>" + feature.properties.Name + "</strong><br/>");
-  })
-
+$.getJSON("Locaties.geojson",function(data){
+  var kIcon = L.icon({
+    iconUrl: '/AG1.svg',
+    iconSize: [15, 36]
+  });
+  L.geoJson(data,{
+    pointToLayer: function(feature,latlng){
+      var marker = L.marker(latlng,{icon: kIcon});
+      marker.bindPopup(feature.properties.Name + '<br/>';
+      return marker;
+    }
+  }).addTo(map);
+});
 
 
   var meteoPoints = [
