@@ -1,6 +1,6 @@
 <html>
 <head>
-  <title>Kitesufff</title>
+  <title>Kitestuff</title>
 
 <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"></script>
   <script src="https://api.windy.com/assets/map-forecast/libBoot.js"></script>
@@ -43,13 +43,15 @@ windyInit(options, windyAPI => {
 $.getJSON("Locaties.geojson",function(data){
     var ratIcon = L.icon({
     iconUrl: '/AG1.svg',
-    iconSize: [50,40]
+    iconSize: [15, 36]
   }); 
-  L.geoJson(data  ,{
+  L.geoJson(data,{
     pointToLayer: function(feature,latlng){
-    return L.marker(latlng,{icon: ratIcon});
+      var marker = L.marker(latlng,{icon: ratIcon});
+      marker.bindPopup("<p>Wind Speed: " + feature.properties.Name +"</p>");
+      return marker;
     }
-  }  ).addTo(map);
+  }).addTo(map);
 });
 
 
