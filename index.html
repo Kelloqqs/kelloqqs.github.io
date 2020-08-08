@@ -55,21 +55,7 @@ $.getJSON("Locaties.geojson",function(data){
 });
 
 
-  var meteoPoints = [
-    [ 52.328973 , 5.122153, 5, 360], //Ipsach
-    [ 47.085272, 7.20377 , 30, 90], //Mörigen
-    [ 47.092285, 7.156734, 47, 170], //Twann
-    [ 47.13294 , 7.220936, 92, 45], //Vingelz
-    [ 47.088311, 7.128925, 125 , 280], //Twannberg
-    [ 47.124765, 7.234669, 200, 135], //Nidau
-    [ 47.055107, 7.07159 , 62 , 360 ]  //lelanderon
-];
-        
-meteoPoints.forEach(function(p){
-    var icon = L.WindBarb.icon({deg: p[3], speed: p[2]});
-    var marker = L.marker([p[0],p[1]], {icon: icon}).addTo(map).bindPopup("<p>Wind Speed: "+p[2]+"</p>"+
-                                                                          "<p>Wind Direction: "+p[3]+"</p>");  
-});
+
 
 });
 
