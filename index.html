@@ -42,13 +42,13 @@ windyInit(options, windyAPI => {
 
 $.getJSON("Locaties.geojson",function(data){
     var ratIcon = L.icon({
-    iconUrl: '/AG1.svg',
+    iconUrl: '/AG6.svg',
     iconSize: [15, 36]
   }); 
   L.geoJson(data,{
     pointToLayer: function(feature,latlng){
       var marker = L.marker(latlng,{icon: ratIcon});
-      marker.bindPopup("<p>Wind Speed: " + feature.properties.Name +"</p>");
+      marker.bindPopup("<p>Naam: " + feature.properties.Name +"</p>");
       return marker;
     }
   }).addTo(map);
