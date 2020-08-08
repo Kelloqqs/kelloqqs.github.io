@@ -1,0 +1,71 @@
+<html>
+<head>
+  <title>Kitesurf</title>
+
+<script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"></script>
+  <script src="https://api.windy.com/assets/map-forecast/libBoot.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+      
+
+  <style>
+    #windy {
+    width: 100%;
+    height: 100%;
+}
+
+  </style>
+</head>
+<body>
+ <div id="windy"></div>
+ </body>
+<script src="leaflet-windbarb.js"> </script>
+<script>
+
+const options = {
+// Required: API key
+key: 'UNVcpMZE4d9R6ext47fo3qsThBbxV7EL', // REPLACE WITH YOUR KEY !!!
+verbose: true,
+
+};
+
+windyInit(options, windyAPI => {
+  const { map } = windyAPI;
+  
+  map.setZoom(11);
+
+  map.baseLayer.setUrl("https://stamen-tiles.a.ssl.fastly.net/toner-background/{z}/{x}/{y}.png");
+  map.baseLayer.setOpacity(0.2);
+
+  // Remove Windy city labels
+  map.removeLayer(W.labelsLayer);
+
+
+    $.getJSON("Locaties.geojson",function(data){
+    // add GeoJSON layer to the map once the file is loaded
+    L.geoJson(data).addTo(map).bindPopup("<strong>" + feature.properties.Name + "</strong><br/>");
+  })
+
+
+
+  var meteoPoints = [
+    [ 52.328973 , 5.122153, 5, 360], //Ipsach
+    [ 47.085272, 7.20377 , 30, 90], //Mörigen
+    [ 47.092285, 7.156734, 47, 170], //Twann
+    [ 47.13294 , 7.220936, 92, 45], //Vingelz
+    [ 47.088311, 7.128925, 125 , 280], //Twannberg
+    [ 47.124765, 7.234669, 200, 135], //Nidau
+    [ 47.055107, 7.07159 , 62 , 360 ]  //lelanderon
+];
+        
+meteoPoints.forEach(function(p){
+    var icon = L.WindBarb.icon({deg: p[3], speed: p[2]});
+    var marker = L.marker([p[0],p[1]], {icon: icon}).addTo(map).bindPopup("<p>Wind Speed: "+p[2]+"</p>"+
+                                                                          "<p>Wind Direction: "+p[3]+"</p>");  
+});
+
+});
+
+  </script>
+</body>
+</html>
+	
