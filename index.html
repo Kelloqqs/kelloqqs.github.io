@@ -33,11 +33,25 @@ windyInit(options, windyAPI => {
   
   map.setZoom(11);
 
+  map.options.minZoom = 4;
+  map.options.maxZoom = 18;
+
   map.baseLayer.setUrl("https://stamen-tiles.a.ssl.fastly.net/toner-background/{z}/{x}/{y}.png");
   map.baseLayer.setOpacity(0.2);
-
   // Remove Windy city labels
   map.removeLayer(W.labelsLayer);
+
+
+map.options.minZoom = 4;
+map.options.maxZoom = 17;
+
+var topLayer = L.tileLayer('https://stamen-tiles.a.ssl.fastly.net/toner-background/{z}/{x}/{y}.png', {
+    attribution: 'Map tiles by <a href="https://stamen.com">Stamen Design</a>, under <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a>. Data by <a href="http://openstreetmap.org">OpenStreetMap</a>, under <a href="http://www.openstreetmap.org/copyright">ODbL</a>.',
+    minZoom: 12,
+    maxZoom: 17,
+    opacity: 0.2
+}).addTo(map);
+
 
 
 $.getJSON("Locaties.geojson",function(data){
