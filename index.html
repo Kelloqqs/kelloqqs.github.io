@@ -61,7 +61,7 @@ $.getJSON("Locaties.geojson",function(data){
   L.geoJson(data,{
     pointToLayer: function(feature,latlng){
       var marker = L.marker(latlng,{icon: ratIcon});
-      marker.bindPopup("<p>Naam: " + feature.properties.Name +"</p>");
+      marker.bindPopup("<b>" + feature.properties.Name +"</b>" + "<p>Veilige windrichting: " + feature.properties.Windrichting +"</p>");
       return marker;
     }
   }).addTo(map);
@@ -74,7 +74,7 @@ $.getJSON("Locaties.geojson",function(data){
   L.geoJson(data,{
     pointToLayer: function(feature,latlng){
       var marker = L.marker(latlng,{icon: icon});
-      marker.bindPopup("<p>Naam: " + feature.properties.Name +"</p>");
+      marker.bindPopup("<b>" + feature.properties.Name +"</b>" + "<p>Veilige windrichting: " + feature.properties.Windrichting +"</p>");
       return marker;
     }
   }).addTo(map);
