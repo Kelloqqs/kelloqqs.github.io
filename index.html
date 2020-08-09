@@ -53,7 +53,6 @@ var topLayer = L.tileLayer('https://stamen-tiles.a.ssl.fastly.net/toner-backgrou
 }).addTo(map);
 
 
-
 $.getJSON("Locaties.geojson",function(data){
     var ratIcon = L.icon({
     iconUrl: '/AG6.svg',
@@ -66,6 +65,24 @@ $.getJSON("Locaties.geojson",function(data){
       return marker;
     }
   }).addTo(map);
+
+
+});
+
+$.getJSON("Locaties.geojson",function(data){
+   var icon = L.WindBarb.icon({deg: feature.properties.deg, speed: feature.properties.speed});
+  L.geoJson(data,{
+    pointToLayer: function(feature,latlng){
+      var marker = L.marker(latlng,{icon: icon});
+      marker.bindPopup("<p>Naam: " + feature.properties.Name +"</p>");
+      return marker;
+    }
+  }).addTo(map);
+
+
+
+
+
 });
 
 
