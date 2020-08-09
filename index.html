@@ -1,6 +1,6 @@
 <html>
 <head>
-  <title>Kitestuff</title>
+  <title>Kitestufff</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
 <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"></script>
@@ -12,6 +12,13 @@
     #windy {
     width: 100%;
     height: 100%;
+}
+
+#windy #logo {
+    transform: scale(0.5, 0.5);
+    text-align: center;
+    text-decoration: none;
+    margin-top: 1em;
 }
 
   </style>
@@ -34,25 +41,24 @@ windyInit(options, windyAPI => {
 
     picker.on('pickerOpened', latLon => {  
         const { lat, lon, values, overlay } = picker.getParams();     
-        const windObject = utils.wind2obj(values);
-        
+        const windObject = utils.wind2obj(values);        
     });
 
     picker.on('pickerMoved', latLon => {       
     });
 
     picker.on('pickerClosed', () => {
-        // picker was closed
     });
 
-    // Wait since wather is rendered
     broadcast.once('redrawFinished', () => {
         picker.open({ lat: 52.3, lon: 5.3 });
-        // Opening of a picker (async)
+
     });
 
-
-
+    picker.on('click', latLon => {
+      const { lat, lon, values, overlay } = picker.getParams()
+      picker.open();       
+    });
 
   
   map.setZoom(11);
