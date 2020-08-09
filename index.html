@@ -70,11 +70,12 @@ $.getJSON("Locaties.geojson",function(data){
 });
 
 $.getJSON("Locaties.geojson",function(data){
+  console.log(feature.properties.deg);
    var icon = L.WindBarb.icon({deg: feature.properties.deg, speed: feature.properties.speed});
   L.geoJson(data,{
     pointToLayer: function(feature,latlng){
       var marker = L.marker(latlng,{icon: icon});
-      marker.bindPopup("<b>" + feature.properties.Name +"</b>" + "<p>Veilige windrichting: " + feature.properties.Windrichting +"</p>");
+      marker.bindPopup("<b>" + feature.properties.Name +"</b>" + "<p>Veilige windrichting: " + "<br>" + feature.properties.Windrichting +"</p>");
       return marker;
     }
   }).addTo(map);
